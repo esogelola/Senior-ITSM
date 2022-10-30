@@ -1,7 +1,5 @@
-from typing import Type
 from django.db import models
 from django.contrib.auth.models import User
-
 
 
 class Hardware(models.Model):
@@ -25,11 +23,10 @@ class Hardware(models.Model):
     Serial = models.CharField(max_length=100)
     Processors: models.CharField(max_length=100)
     Hotfixes = models.CharField(max_length=100)
-   
-
 
     def __str__(self):
         return self.HostName
+
 
 class Other(models.Model):
     Manf = models.CharField(max_length=100)
@@ -37,12 +34,10 @@ class Other(models.Model):
     Quantity = models.IntegerField()
     Expiry = models.DateTimeField()
 
+
 class Software(models.Model):
     Manf = models.CharField(max_length=100)
     Title = models.CharField(max_length=100)
     User = models.ForeignKey(User, on_delete=models.CASCADE)
     Device = models.DateTimeField()
     Price = models.IntegerField()
-
-
-
