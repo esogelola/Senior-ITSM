@@ -1,6 +1,6 @@
-# Foobar
+# Senior-ITSM
 
-Foobar is a Python library for dealing with word pluralization.
+Senior ITSM Project
 
 ## Installation
 
