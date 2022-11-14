@@ -34,13 +34,20 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'inventory.apps.InventoryConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'widget_tweaks',                            # uses 'django-widget-tweaks' app
+    'crispy_forms',                             # uses 'django-crispy-forms' app
+    'login_required',                           # uses 'django-login-required-middleware' app
+
+
+    'inventory.apps.InventoryConfig',
+    'homepage.apps.HomepageConfig',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'login_required.middleware.LoginRequiredMiddleware',    # middleware used for global login
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -58,7 +67,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join((BASE_DIR), 'templates/')],
+        'DIRS': ['templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,6 +85,26 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+# TODO:  Change to MySQL database
+# Setup MySQL database
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'inventory',
+#         'USER': 'root',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql mode='STRICT",
+#             'charset': 'utf8mb4',
+#             'use_unicode': True,
+#         },
+#     }
+# }
+
 
 DATABASES = {
     'default': {
@@ -126,3 +155,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Custom settings
+LOGIN_REDIRECT_URL = 'dashboard' 
+LOGIN_URL = 'login'                                     # sets the 'login' page as default when user tries to illegally access profile or other hidden pages
+LOGIN_REQUIRED_IGNORE_VIEW_NAMES = [                    # urls ignored by the login_required. Can be accessed with out logging in
+    'login',
+    'logout',
+    'about',
+    'home',
+]

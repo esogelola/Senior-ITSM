@@ -1,0 +1,94 @@
+.login-btn {
+  padding: 0rem 0rem;
+  margin-left: 1rem;
+  color: #6c757d;
+  border-color: #6c757d;
+
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid;
+  padding: 0rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+}
+
+.login-btn:hover {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.hero {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+
+  margin-bottom: 5rem;
+}
+.hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+.hero-btn-group {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.hero-btn {
+  padding: 0.75rem 1.5rem;
+  margin-right: 1rem;
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #0000;
+  border-radius: 0.25rem;
+}
+.hero-btn-1 {
+  background-color: #3db1e3;
+  border-color: #0000;
+}
+
+.hero-btn-2 {
+  background-color: #56bd66;
+  border-color: #0000;
+}
+.hero-btn-3 {
+  background-color: #ea3d32;
+  border-color: #0000;
+}
+
+.function-section {
+  margin-top: 3rem;
+  margin-bottom: 10rem;
+}
+
+.function-section .function-title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.function-section .title-container {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 3rem;
+}
+
+/* css for page body with  background image */
+.logout-body {
+  background-image: url("../images/logout-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}

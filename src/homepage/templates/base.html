@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'bootstrap/bootstrap.min.css' %}"
+    />
+
+    <!-- Main CSS, then Sidebar CSS and Dialog Box CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/sidebar.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/dialogbox.css' %}"
+    />
+
+    <title>ITSM - {% block title %}Title Missing{% endblock title %}</title>
+  </head>
+
+  <body>
+    <!-- Dialog Box CSS  -->
+    <div id="dialogoverlay"></div>
+    <div id="dialogbox">
+      <div class="align-middle">
+        <div id="dialogboxhead"></div>
+        <div id="dialogboxbody"></div>
+        <div id="dialogboxfoot"></div>
+      </div>
+    </div>
+
+    <main id="">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="#"
+            >ASSET MANAGEMENT SYSTEM <span class="sr-only">(current)</span></a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">Hardware </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Software</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Other</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Reports</a>
+              </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item ml-5">
+                <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+              </li>
+              <li class="nav-item login-btn">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+
+              </li>
+              {% else %}
+              <li class="nav-item login-btn">
+                <a class="nav-link nav-link-login" href="{% url 'login' %}"
+                  >Login</a
+                >
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div id="">
+        <div class="row">
+          <div class="col-md-12">
+            {% if messages %} {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %} {% endif %}
+
+            <div class="container">
+              {% block content %}{% endblock content %}
+            </div>
+          </div>
+        </div>
+        <br />
+      </div>
+    </main>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'bootstrap/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+  </body>
+</html>

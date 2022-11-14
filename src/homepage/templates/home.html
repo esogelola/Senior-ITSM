@@ -1,0 +1,105 @@
+{% extends "base.html" %} {% load static %} {% block title %} Home 
+{% endblock title %} {% block content %}
+<div class="row flex-sm-wrap-reverse hero">
+  <div class="col-md-6 text-left">
+    <h1 class="hero-title">
+      Asset <br />
+      Management
+    </h1>
+    <p class="hero-subtitle">
+      Welcome to your Asset Management system. Where you can inventory, track
+      and monitor all your IT assets.
+    </p>
+
+    <!-- 2 Column 2 Row grid of buttons of different colors -->
+    <div class="flex flex-col flex-wrap hero-btn-group">
+      <button class="hero-btn hero-btn-1">Hardware</button>
+      <button class="hero-btn hero-btn-2">Other</button>
+      <button class="hero-btn hero-btn-3">Software</button>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <img
+      src="{% static 'images/hero-image.jpg' %}"
+      alt="IT Asset Management"
+      class="img-fluid"
+    />
+  </div>
+</div>
+
+<div class="function-section">
+  <div class="title-container">
+    <h2 class="function-title">Core Features</h2>
+    <p class="function-subtitle">
+      We provide a simple and easy to use asset management system for your
+      business.
+    </p>
+  </div>
+
+  <div>
+    <div class="row">
+      <div class="col-md-6">
+        <img
+          src="{% static 'images/hardware-chart-example.png' %}"
+          alt="Asset Management"
+          class="img-fluid"
+        />
+      </div>
+      <div class="col-md-6">
+        <h3 class="function-subtitle">Hardware Inventory</h3>
+        <p class="function-text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+          voluptates, quod, quia, voluptatibus quae voluptatem quidem voluptatum
+          quibusdam quos quas nesciunt. Quisquam, quae. Quisquam, quae.
+          Quisquam, quae. Quisquam, quae.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="function-section">
+  <div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3 class="function-subtitle">Software Inventory</h3>
+        <p class="function-text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+          voluptates, quod, quia, voluptatibus quae voluptatem quidem voluptatum
+          quibusdam quos quas nesciunt. Quisquam, quae. Quisquam, quae.
+          Quisquam, quae. Quisquam, quae.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <img
+          src="{% static 'images/software-chart-example.png' %}"
+          alt="Asset Management"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="function-section text-center">
+ 
+    <div class="">
+      <h3 class="function-subtitle">Other Inventory</h3>
+      <p class="function-text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+        voluptates, quod, quia, voluptatibus quae voluptatem quidem voluptatum
+        quibusdam quos quas nesciunt. Quisquam, quae. Quisquam, quae. Quisquam,
+        quae. Quisquam, quae.
+      </p>
+    </div>
+    <div class="">
+      <img
+        src="{% static 'images/software-overview-example.png' %}"
+        alt="Asset Management"
+        class="img-fluid"
+      />
+    </div>
+  
+</div>
+
+{% endblock content %}
