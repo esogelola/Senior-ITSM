@@ -1,0 +1,154 @@
+{% extends "base_sidebar.html" %} {% load widget_tweaks %} {% load static %}
+{% block title %} Home {% endblock title %} {% block content %}
+
+<div class="container py-5 my-5" style="max-width: 980px">
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-toggle="modal"
+    data-target="#exampleModal"
+  >
+    Add Software
+  </button>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Software</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'inventory_softwares' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="manfInput" class="col-form-label"
+                >Manufacturer:</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="manfInput"
+                name="manf"
+              />
+            </div>
+            <div class="form-group">
+              <label for="titleInput" class="col-form-label">Title:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="titleInput"
+                name="title"
+              />
+            </div>
+
+            <input
+              type="text"
+              class="form-control"
+              id="user1"
+              name="user1"
+              hidden
+              value="{{ request.user.username }}"
+            />
+
+            <div class="form-group">
+              <label for="deviceInput" class="col-form-label">Device:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="deviceInput"
+                name="device"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="priceInput" class="col-form-label">Price:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="priceInput"
+                name="price"
+              />
+            </div>
+            <button class="btn btn-primary" onclick="">Save changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="">Software Inventory</h1>
+    </div>
+
+    <div class="col-md-12">
+      <table
+        id="software_table"
+        class="display table table-striped"
+        style="width: 100%"
+      >
+        <thead>
+          <tr>
+            <th>rowid</th>
+            <th>Manufacturer</th>
+            <th>Title</th>
+            <th>User</th>
+
+            <th>Device</th>
+            <th>Price</th>
+            <th></th>
+
+            <th class="text-center"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in software %}
+          <tr>
+            <td data-label="rowid">{{data.rowid}}</td>
+            <td data-label="manf">{{data.manf}}</td>
+            <td data-label="title">{{data.title}}</td>
+            <td data-label="user1">{{data.user1}}</td>
+            <td data-label="device">{{data.device}}</td>
+            <td data-label="price">{{data.price}}</td>
+
+            <td></td>
+
+            <td class="d-inline-flex justify-content-between">
+             
+                <a
+                  href="{% url 'software_detail' rowid=data.rowid %}"
+                  class="btn btn-sm btn-outline-primary ml-1"
+                  >Edit</a>
+                  <button
+                  class="btn btn-outline-danger ml-1"
+                  onclick="deleteSoftware({{data.rowid}})"
+                >
+                  Delete
+                </button>                                                               
+      
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% endblock content %}
+</div>

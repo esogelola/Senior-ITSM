@@ -34,6 +34,7 @@
       type="text/css"
       href="{% static 'css/dialogbox.css' %}"
     />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
 
     <title>ITSM - {% block title %}Title Missing{% endblock title %}</title>
   </head>
@@ -55,21 +56,52 @@
         class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
         style="width: 280px"
       >
-        <a
-          href="/"
-          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+       <!-- User Icon -->
+       <div class="dropup mb-5">
+       <!-- div with image center and name center -->
+          <button
+          class="dropdown-toggle btn btn-outline-light"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
         >
-          <svg class="bi me-2" width="40" height="32">
-            <use xlink:href="#bootstrap"></use>
-          </svg>
-          <span class="fs-4">Sidebar</span>
-        </a>
-        <hr />
-        <ul class="nav nav-pills flex-column mb-auto">
-          <p class="sidebar-paragraph border-bottom-4 border-light">
-            Dashboard
-          </p>
+          <img
+            src="https://via.placeholder.com/32"
+            alt=""
+            width="32"
+            height="32"
+            class="rounded-circle me-2"
+          />
+          <strong>{{ request.user.username }}</strong>
+        </button>
+       
 
+        <div class="dropdown-menu">
+          {% if request.user.is_superuser %}
+          <li>
+            <a
+              class="sidebar-text sidebar-subitem sidebar-button"
+              href="{% url 'admin:index' %}"
+              >Admin Page</a
+            >
+          </li>
+          {% endif %}
+          <li>
+            <a
+              class="sidebar-text sidebar-subitem sidebar-button"
+              href="{% url 'logout' %}"
+              >Logout</a
+            >
+          </li>
+        </div>
+      </div>
+
+        <ul class="nav nav-pills flex-column mb-auto">
+          <h3 class="sidebar-paragraph border-bottom-4 border-light">
+            Dashboard
+          </h3>
+       
+        
           <li>
             <a class="sidebar-text sidebar-button" href="{% url 'dashboard' %}"
               >Home</a
@@ -87,18 +119,32 @@
               <li>
                 <a
                   class="sidebar-text sidebar-subitem sidebar-button"
-                  href="{% url 'inventory_index' %}"
-                  >Inventory Asset List</a
+                  href="{% url 'inventory_hardwares' %}"
+                  >Hardware Asset List</a
                 >
               </li>
               <li>
-                <a class="sidebar-text sidebar-subitem sidebar-button" href="#"
-                  >Add Asset</a
+                <a
+                  class="sidebar-text sidebar-subitem sidebar-button"
+                  href="{% url 'inventory_softwares' %}"
+                  >Software Asset List</a
+                >
+              </li>
+              <li>
+                <a
+                  class="sidebar-text sidebar-subitem sidebar-button"
+                  href="{% url 'inventory_contracts' %}"
+                  >Contracts Asset List</a
                 >
               </li>
             </ul>
           </li>
           <li>
+
+
+
+          
+
             <a
               href="#purchaseSubmenu"
               data-toggle="collapse"
@@ -107,54 +153,24 @@
             >
             <ul class="collapse list-unstyled" id="purchaseSubmenu">
               <li>
-                <a class="sidebar-text sidebar-subitem sidebar-button" href="#"
+                <a
+                  class="sidebar-text sidebar-subitem sidebar-button"
+                  href="{% url 'inventory_reports' %}"
                   >Reports List</a
                 >
               </li>
               <li>
-                <a class="sidebar-text sidebar-subitem sidebar-button" href="#"
+                <a
+                  class="sidebar-text sidebar-subitem sidebar-button"
+                  href="{% url 'generate_report' %}"
                   >Generate Report</a
                 >
               </li>
             </ul>
           </li>
         </ul>
-        <hr />
-        <div class="dropup">
-          <button
-            class="dropdown-toggle btn btn-outline-light"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <img
-              src="https://via.placeholder.com/32"
-              alt=""
-              width="32"
-              height="32"
-              class="rounded-circle me-2"
-            />
-            <strong>{{ request.user.username }}</strong>
-          </button>
-          <div class="dropdown-menu">
-            {% if request.user.is_superuser %}
-            <li>
-              <a
-                class="sidebar-text sidebar-subitem sidebar-button"
-                href="{% url 'admin:index' %}"
-                >Admin Page</a
-              >
-            </li>
-            {% endif %}
-            <li>
-              <a
-                class="sidebar-text sidebar-subitem sidebar-button"
-                href="{% url 'logout' %}"
-                >Logout</a
-              >
-            </li>
-          </div>
-        </div>
+
+    
       </div>
 
       <div id="content">
@@ -180,7 +196,8 @@
       integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
       crossorigin="anonymous"
     ></script>
-
+    <script src="{% static 'js/generateReport.js' %}"></script>
     <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
   </body>
 </html>

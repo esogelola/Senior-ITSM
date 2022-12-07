@@ -1,0 +1,65 @@
+{% extends "base_sidebar.html" %} {% load widget_tweaks %} {% load static %} 
+{% block title %} Home {% endblock title %} {% block content %}
+
+<div class="container py-5 my-5" style="max-width: 980px">
+  
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="">Hardware Inventory</h1>
+    </div>
+
+    <div class="col-md-12">
+      <table
+        id="hardware_table"
+        class="display table table-striped"
+        style="width: 100%"
+      >
+        <thead>
+          <tr>
+            <th>rowid</th>
+            <th>Host Name</th>
+            <th>Owner</th>
+            <th>Manufacturer</th>
+
+            <th>BootTime</th>
+            <th>OSConf</th>
+            <th>OS Name</th>
+            <th>OS Versiom</th>
+            <th>OS Manufacturer</th>
+            
+            <th></th>
+
+            <th class="text-center"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in hardware %}
+          <tr>
+            <td>{{data.rowid}}</td>
+            <td>{{data.hostname}}</td>
+            <td>{{data.owner1}}</td>
+            <td>{{data.manf}}</td>
+     
+            <td>{{data.boottime}}</td>
+            <td>{{data.osname}}</td>
+            <td>{{data.osversion}}</td>
+            <td>{{data.osconf}}</td>
+            <td>{{data.osmanf}}</td>
+
+            <td></td>
+
+            <td class="d-inline-flex justify-content-between">
+              <a
+                href="{% url 'hardware_detail' rowid=data.rowid %}"
+                class="btn btn-sm btn-outline-primary ml-1"
+                >View</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% endblock content %}
+</div>

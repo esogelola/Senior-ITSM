@@ -1,0 +1,336 @@
+<!-- Page to display more hardware details -->
+{% extends "base_sidebar.html" %} {% load widget_tweaks %} {% load static %} 
+{% block title %} Home {% endblock title %} {% block content %}
+<!-- Edit page for hardware details -->
+<div class="container py-5 my-5" style="max-width: 980px">
+  <div class="row">
+    <div class="col-md-12">
+      <!--back button above title-->
+      <button
+        onclick="history.back()"
+        class="btn btn-sm btn-outline-success ml-1"
+      >
+        Back
+      </button>
+      <button
+      onclick="toggleDisableInput(`#hardware_form`, `#hardware_disable_btn`)"
+      class="btn btn-sm btn-outline-warning ml-1"
+      id="hardware_disable_btn"
+    >
+      Enable Edit
+    </button>
+      <h1 class="">Hardware Details</h1>
+    </div>
+    <div class="col-md-12">
+      <form
+        action="{% url 'hardware_edit' rowid=hardware.rowid %}"
+        method="POST"
+        id="hardware_form"
+      >
+        {% csrf_token %}
+        <div
+          class="form-group {% if form.hostname.errors %} has-error {% endif %}"
+        >
+          <label for="hostname">Hostname</label>
+          <input
+            type="text"
+            class="form-control"
+            id="hostname"
+            name="hostname"
+            value="{{hardware.hostname}}"
+            readonly
+          />
+          {% if form.hostname.errors %}
+          <div class="alert alert-danger">
+            {% for error in form.hostname.errors %} {{ error }} {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="accordion mb-3" id="accordionExample">
+          <div>
+            <div class="accordion" id="accordionExample">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button
+                      class="btn btn-link"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseOne"
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
+                      OS Details
+                    </button>
+                  </h5>
+                </div>
+
+                <div
+                  id="collapseOne"
+                  class="collapse "
+                  aria-labelledby="headingOne"
+                  data-parent="#accordionExample"
+                >
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="osname">OS Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="osname"
+                        name="osname"
+                        value="{{hardware.osname}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="osversion">OS Version</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="osversion"
+                        name="osversion"
+                        value="{{hardware.osversion}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="osmanf">OS Manufacturer</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="osmanf"
+                        name="osmanf"
+                        value="{{hardware.osmanf}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="osconf">OS Config</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="osconf"
+                        name="osconf"
+                        value="{{hardware.osconf}}"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion mb-3" id="accordion-hardware-2">
+          <div>
+            <div class="accordion" id="accordion-hardware-2">
+              <div class="card">
+                <div class="card-header" id="hardware2Collapse">
+                  <h5 class="mb-0">
+                    <button
+                      class="btn btn-link"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapse-hardware-2"
+                      aria-expanded="true"
+                      aria-controls="collapse-hardware-2"
+                    >
+                      Hardware Details
+                    </button>
+                  </h5>
+                </div>
+
+                <div
+                  id="collapse-hardware-2"
+                  class="collapse "
+                  aria-labelledby="hardware2Collapse"
+                  data-parent="#accordion-hardware-2"
+                >
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="owner1">Owner</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="owner1"
+                        name="owner1"
+                        value="{{hardware.owner1}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="boottime">Boot Time</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="boottime"
+                        name="boottime"
+                        value="{{hardware.boottime}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="manf"> Manufacturer</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="manf"
+                        name="manf"
+                        value="{{hardware.manf}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="model">Model</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="model"
+                        name="model"
+                        value="{{hardware.model}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="model">Type</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="model"
+                        name="model"
+                        value="{{hardware.model}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="model">Model</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="model"
+                        name="model"
+                        value="{{hardware.model}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="type1">Type</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="type1"
+                        name="type1"
+                        value="{{hardware.type1}}"
+                      />
+                    </div>
+                    <hr class="mt-2 mb-3"/>
+                    <div class="form-group">
+                      <label for="biosvers">BIOS Version</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="biosvers"
+                        name="biosvers"
+                        value="{{hardware.biosvers}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="timezone">Time zone</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="timezone"
+                        name="timezone"
+                        value="{{hardware.timezone}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="totphysmem">Total Physical Memory</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="totphysmem"
+                        name="totphysmem"
+                        value="{{hardware.totphysmem}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="availphysmem">Available Physical Memory</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="availphysmem"
+                        name="availphysmem"
+                        value="{{hardware.availphysmem}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="domain">Domain</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="domain"
+                        name="domain"
+                        value="{{hardware.domain}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="logonserver">Logon Server</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="logonserver"
+                        name="logonserver"
+                        value="{{hardware.logonserver}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="transdate">Trans Date</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="transdate"
+                        name="transdate"
+                        value="{{hardware.transdate}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="serial1">Serial</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="serial1"
+                        name="serial1"
+                        value="{{hardware.serial1}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="processors">Processors</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="processors"
+                        name="processors"
+                        value="{{hardware.processors}}"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="hotfixes">Hotfixes</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="hotfixes"
+                        name="hotfixes"
+                        value="{{hardware.hotfixes}}"
+                      />
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" id="save_hardware" disabled>Save</button>
+          <button type="button" onclick="deleteHardware({{hardware.rowid}})" class="btn btn-outline-danger ml-1">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

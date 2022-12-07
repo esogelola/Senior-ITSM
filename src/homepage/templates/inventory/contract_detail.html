@@ -1,0 +1,74 @@
+<!-- Page to display more contract details -->
+{% extends "base_sidebar.html" %} {% load widget_tweaks %} {% load static %} 
+{% block title %} Home {% endblock title %} {% block content %}
+<!-- Edit page for contract details -->
+<div class="container py-5 my-5" style="max-width: 980px">
+  <div class="row">
+    <div class="col-md-12">
+      <!--back button above title-->
+      <button
+        onclick="history.back()"
+        class="btn btn-sm btn-outline-success ml-1"
+      >
+        Back
+      </button>
+      <button
+      onclick="toggleDisableInput(`#contract_form`, `#contract_disable_btn`)"
+      class="btn btn-sm btn-outline-warning ml-1"
+      id="contract_disable_btn"
+    >
+      Enable Edit
+    </button>
+      <h1 class="">Contract Details</h1>
+    </div>
+    <div class="col-md-12">
+      <form
+        action="{% url 'contract_edit' rowid=contract.rowid %}"
+        method="POST"
+        id="contract_form"
+      >
+        {% csrf_token %}
+        <input hidden type="text" name="id" id="contractId" />
+        <div class="form-group">
+          <label for="titleInput" class="col-form-label">Title:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="titleInput"
+            name="title"
+            value="{{ contract.title }}"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="quantityInput" class="col-form-label">Quantity:</label>
+          <input
+            type="number"
+            class="form-control"
+            id="quantityInput"
+            name="quantity"
+            value="{{ contract.quantity }}"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="expiryInput" class="col-form-label">Expiry:</label>
+          <input
+            type="date"
+            class="form-control"
+            id="expiryInput"
+            name="expiry"
+            value="{{ contract.expiry }}"
+          />
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" id="save_contract" disabled>Save</button>
+          <button type="button" onclick="deleteContract({{contract.rowid}})" class="btn btn-outline-danger ml-1">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

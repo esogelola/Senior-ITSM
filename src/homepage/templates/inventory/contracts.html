@@ -1,0 +1,129 @@
+{% extends "base_sidebar.html" %} {% load widget_tweaks %} {% load static %}
+{% block title %} Home {% endblock title %} {% block content %}
+
+<div class="container py-5 my-5" style="max-width: 980px">
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-toggle="modal"
+    data-target="#exampleModal"
+  >
+    Add Contract
+  </button>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Contract</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'inventory_contracts' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="titleInput" class="col-form-label">Title:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="titleInput"
+                name="title"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="deviceInput" class="col-form-label">Quantity:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="deviceInput"
+                name="quantity"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="expiryInput" class="col-form-label">Expiry:</label>
+              <input
+                type="date"
+                class="form-control"
+                id="expiryInput"
+                name="expiry"
+              />
+            </div>
+            <button class="btn btn-primary" onclick="">Save changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="">Contract Inventory</h1>
+    </div>
+
+    <div class="col-md-12">
+      <table
+        id="contract_table"
+        class="display table table-striped"
+        style="width: 100%"
+      >
+        <thead>
+          <tr>
+            <th>rowid</th>
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Expiry</th>
+            <th></th>
+
+            <th class="text-center"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in contract %}
+          <tr>
+            <td data-label="rowid">{{data.rowid}}</td>
+            <td data-label="title">{{data.title}}</td>
+            <td data-label="quantity">{{data.quantity}}</td>
+            <td data-label="expiry">{{data.expiry}}</td>
+
+            <td></td>
+
+            <td class="d-inline-flex justify-content-between">
+             
+                <a
+                  href="{% url 'contract_detail' rowid=data.rowid %}"
+                  class="btn btn-sm btn-outline-primary ml-1"
+                  >Edit</a>
+                  <button
+                  class="btn btn-outline-danger ml-1"
+                  onclick="deleteContract({{data.rowid}})"
+                >
+                  Delete
+                </button>                                                               
+      
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% endblock content %}
+</div>

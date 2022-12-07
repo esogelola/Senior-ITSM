@@ -1,3 +1,10 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
 
@@ -22,7 +29,6 @@ class Hardware(models.Model):
     serial1 = models.TextField(db_column='Serial1', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
     processors = models.TextField(db_column='Processors', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
     hotfixes = models.TextField(db_column='Hotfixes', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
-    rowid = models.AutoField(db_column='RowID', primary_key=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -35,18 +41,17 @@ class Software(models.Model):
     user1 = models.TextField(db_column='User1', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
     device = models.TextField(db_column='Device', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
     price = models.DecimalField(db_column='Price', max_digits=18, decimal_places=0, blank=True, null=True)  # Field name made lowercase.
-    rowid = models.AutoField(db_column='RowID', primary_key=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
         db_table = 'software'
 
 
-class Contract(models.Model):
+class Contracts(models.Model):
+    manf = models.TextField(db_column='Manf', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
     title = models.TextField(db_column='Title', blank=True, null=True)  # Field name made lowercase. This field type is a guess.
     quantity = models.IntegerField(db_column='Quantity', blank=True, null=True)  # Field name made lowercase.
     expiry = models.DateField(db_column='Expiry', blank=True, null=True)  # Field name made lowercase.
-    rowid = models.AutoField(db_column='RowID', primary_key=True)  # Field name made lowercase.
 
     class Meta:
         managed = False

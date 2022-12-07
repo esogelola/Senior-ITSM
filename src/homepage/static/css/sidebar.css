@@ -98,8 +98,8 @@ a.nav-button {
 
 #content {
   width: 100%;
-  margin-left: 250px;
   padding: 20px;
+
   min-height: 100vh;
   transition: all 0.3s;
 }

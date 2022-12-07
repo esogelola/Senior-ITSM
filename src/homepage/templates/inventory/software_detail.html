@@ -1,0 +1,95 @@
+<!-- Page to display more software details -->
+{% extends "base_sidebar.html" %} {% load widget_tweaks %} {% load static %} 
+{% block title %} Home {% endblock title %} {% block content %}
+<!-- Edit page for software details -->
+<div class="container py-5 my-5" style="max-width: 980px">
+  <div class="row">
+    <div class="col-md-12">
+      <!--back button above title-->
+      <button
+        onclick="history.back()"
+        class="btn btn-sm btn-outline-success ml-1"
+      >
+        Back
+      </button>
+      <button
+      onclick="toggleDisableInput(`#software_form`, `#software_disable_btn`)"
+      class="btn btn-sm btn-outline-warning ml-1"
+      id="software_disable_btn"
+    >
+      Enable Edit
+    </button>
+      <h1 class="">Software Details</h1>
+    </div>
+    <div class="col-md-12">
+      <form
+        action="{% url 'software_edit' rowid=software.rowid %}"
+        method="POST"
+        id="software_form"
+      >
+        {% csrf_token %}
+        <input hidden type="text" name="id" id="softwareId" />
+            <div class="form-group">
+              <label for="manfInput" class="col-form-label"
+                >Manufacturer:</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="softwareManfInput"
+                name="manf"
+                value="{{software.manf}}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="titleInput" class="col-form-label">Title:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="softwareTitleInput"
+                name="title"
+                value="{{software.title}}"
+              />
+            </div>
+
+            <input
+              type="text"
+              class="form-control"
+              id="user1"
+              name="user1"
+              hidden
+              value="{{ request.user.username }}"
+            />
+
+            <div class="form-group">
+              <label for="deviceInput" class="col-form-label">Device:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="softwareDeviceInput"
+                name="device"
+                value="{{software.device}}"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="priceInput" class="col-form-label">Price:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="softwarePriceInput"
+                name="price"
+                value="{{software.price}}"
+              />
+            </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" id="save_software" disabled>Save</button>
+          <button type="button" onclick="deleteSoftware({{software.rowid}})" class="btn btn-outline-danger ml-1">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,1 @@
+contract,[{"model": "inventory.contract", "pk": 1, "fields": {"title": "Warranty x", "quantity": 1, "expiry": "2022-12-30"}}, {"model": "inventory.contract", "pk": 2, "fields": {"title": "Delete Sam", "quantity": 2, "expiry": "2022-12-08"}}] 

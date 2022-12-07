@@ -1,0 +1,79 @@
+{% extends "base_sidebar.html" %} {% load widget_tweaks %} {% load static %} 
+{% block title %} Home {% endblock title %} {% block content %}
+
+<div class="container py-5 my-5">
+  <!-- CARD DIVE WITH FORM to generate basic report -->
+  <div class="card shadow p-3 mb-5 bg-white rounded">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 style="color: #ea2088; font-style: bold; font-size: 3rem">
+            Generate Report
+          </h3>
+           <p>Create reports for specific software requirements.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div style="border-bottom: 1px solid #ea2088"></div>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-md-12">
+          <form method="post" id="reportForm" action="{% url 'generate_report' %}" >
+            {% csrf_token %}
+            <div class="form-group {% if form.errors %} has-error {% endif %}">
+              <label for="report_type">Report Type</label>
+              <select class="form-control" id="report_type" name="report_type">
+                <option value="1">Hardware</option>
+                <option value="2">Software</option>
+                <option value="3">Contracts</option>
+                <option value="4">All</option>
+              </select>
+
+              <label for="report_type">Report Format</label>
+              <select
+                class="form-control"
+                id="report_format"
+                name="report_format"
+              >
+                <option value="1">CSV</option>
+                <option value="2">JSON</option>
+                <option value="3">TXT</option>
+                <option value="4">PDF</option>
+            
+              </select>
+
+              <label for="report_type">Report Scope</label>
+
+              <select
+                class="form-control"
+                id="report_scope"
+                name="report_scope"
+              >
+                <option value="1">All</option>
+                <option value="2">Selected</option>
+              </select>
+
+
+            </div>
+            
+            <!-- call generate report button on submit -->
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              Generate Report
+            </button>
+          </form>
+        </div>
+     </div>
+    
+        
+      </div>
+      {% endblock content %}
+    </div>
+  </div>
+</div>

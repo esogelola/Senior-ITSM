@@ -1,0 +1,59 @@
+{% extends "base_sidebar.html" %} {% load widget_tweaks %} {% load static %}
+{% block title %} Home {% endblock title %} {% block content %}
+
+<div class="container py-5 my-5" style="max-width: 980px">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="">Reports</h1>
+    </div>
+
+    <div class="col-md-12">
+      <table
+        id="contract_table"
+        class="display table table-striped"
+        style="width: 100%"
+      >
+        <thead>
+          <tr>
+            <th>Report Name</th>
+            <th></th>
+
+            <th class="text-center"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in report_list %}
+          <tr>
+            <td data-label="rowid">{{data}}</td>
+
+            <td></td>
+
+            <td class="d-inline-flex justify-content-between">
+                <form >
+                    {% csrf_token %}
+                <button
+                  href="#"
+                  type="button"
+                  class="btn btn-sm btn-outline-primary ml-1"
+                  onclick="downloadReport('{{data}}')"
+                  >Download</button>
+                  <button
+                  type="button"
+
+                  class="btn btn-outline-danger ml-1"
+                  onclick="deleteReport('{{data}}')"
+                >
+                  Delete
+                </button>                                                               
+            </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% endblock content %}
+</div>
